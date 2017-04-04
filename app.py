@@ -15,13 +15,14 @@ from urllib import urlretrieve
 from youtube_dl import YoutubeDL
 from flask import Flask, session, redirect, url_for, escape, request, flash, jsonify
 
-# All database stuff related to connection with heroku
+'''
+ All database stuff related to connection with heroku
 url = urlparse.urlparse(os.environ.get('DATABASE_URL'))
 db = "dbname=%s user=%s password=%s host=%s " % (url.path[1:], url.username, url.password, url.hostname)
 schema = "schema.sql"
 conn = psycopg2.connect(db)
 cur = conn.cursor()
-
+'''
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SECRET KEY'; # Type your secret key here
 
