@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="container">
+   <h2>Welcome Mythical Beast</h2>
+   <p class="flow text"> This is a web application made with the help of Heroku, Python and Flask. Here you can do loads of things including downloading various things.</p>
+   <p class="flow text"><h4>Features</h4><br>
+   Log in system lets you create your account in this site and then create your own personal task just like google keep.
+   </p>
+   <p class="flow text">Download photos from instagram profile (public) with just username only</p>
+   <p class="flow text">Download videos just by URL including HD videos and audios</p>
+   <br>
+   <h5>Thanks for coming :)</h5>
+   <h6>Also if possible please help us by giving suggestions, just scroll down and type, it's that easy</h6>
+
+
+     <a class="waves-effect waves-light btn" href="#modal1">Updates</a>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>Ongoing Updates</h4>
+      <p class="flow text">
+      	<ul>
+        <li>---Log in system finally updated and fixed some bugs</li>
+        <li>--- Update todo: Different todo as per log in</li>
+        <li>- Created session for log in and log out</li>
+        <li>- All social links added</li>
+      	<li>- Updated to do list by adding zoom features</li>
+      	<li>--- Added colour themes in to do list</li>
+      	<li>- Created Youtube video downloader</li>
+      	<li>--- Instagram picture downloader fixed bugs</li>
+      	<li>- Created Instagram picture downloader</li>
+      	<li>--- Created To do list</li>
+      	<li>- Added connection to database</li>
+      	<li>- Created Hello world page using Flask</li>
+      	</ul>
+
+      </p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Back</a>
+    </div>
+  </div>
+
+
+   <hr style="color: black;">
+</div>
+<div class="row">
+<div class="col s4">
+<center>
+<img src="{{url_for('static', filename='keep.png')}}" height="100%" width="100%">
+</center>
+</div>
+<div class="col s4">
+<center>
+<img src="{{url_for('static', filename='insta.png')}}" height="100%" width="100%">
+
+</center>
+</div>
+<div class="col s4">
+<center>
+<img src="{{url_for('static', filename='youbot.png')}}" height="100%" width="100%">
+
+</center>
+</div>
+</div>
+<div class="row">
+<div class="col s4">
+<center>
+<a class="waves-effect waves-light btn" href = '/todo'>To do</a>
+<br><br><br>
+Just like google keep where you can upload your own personal task in an interactive way.
+You can also delete task from your profile which will be available on top right corner after logging in.
+</center>
+</div>
+<div class="col s4">
+<center>
+<a class="waves-effect waves-light btn" href = '/instagram'>Insta image</a>
+<br><br><br>
+Enter username and choose the quality of image you want to download and then you can download any photo with just one click.
+</center>
+</div>
+<div class="col s4">
+<center>
+<a class="waves-effect waves-light btn" href = '/youtube'>Youtube video</a>
+<br><br><br>Any video just enter URL and it will give more than 10 types of quality to download including HD, audio format etc.
+</center>
+</div>
+</div>
+<div class="row container">
+<br>
+<br>
+<h2>Suggestions</h2>
+<h5>Your suggestions are really valuable to me :)</h5>
+<div class="col s6" style="max-height: 500px; max-width: 100%; overflow-y: scroll;">
+{% for r in message %}
+<p>
+<div class="row">
+  <div class="col s2">
+    <i class="material-icons medium">perm_identity</i>
+</div>
+<div class="col s10">
+<b>{{r[0]}}</b>
+<br>{{r[1]}}
+<br>
+<hr width="50%" class="left">
+</div>
+</div>
+</p>
+{% endfor %}
+</div>
+<div class="col s6">
+<form class="col s12" role="form" method='POST' action='/' autocomplete="off">
+        <div class="input-field">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="icon_prefix" type="text" class="validate" name = "name">
+          <label for="icon_prefix">Name</label>
+        </div>
+        <br>
+        <div class="input-field col s12">
+        <i class="material-icons prefix">mode_edit</i>
+          <textarea id="textarea1" class="materialize-textarea" name = "text"></textarea>
+          <label for="textarea1">Textarea</label>
+        </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+</div>
+</form>
+</div>
+<!--
+  <ul id="tabs-swipe-demo" class="tabs">
+    <li class="tab col s3"><a href="#test-swipe-1">Test 1</a></li>
+    <li class="tab col s3"><a class="active" href="#test-swipe-2">Test 2</a></li>
+    <li class="tab col s3"><a href="#test-swipe-3">Test 3</a></li>
+  </ul>
+  <div id="test-swipe-1" class="col s12 blue">Test 1</div>
+  <div id="test-swipe-2" class="col s12 red">Test 2</div>
+  <div id="test-swipe-3" class="col s12 green">Test 3</div>
+  -->
+{% endblock %}
+{% block js_footer %}
+<script type="text/javascript" src="{{url_for('static', filename='javascript/jquery-2.1.1.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='javascript/materialize.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='javascript/materialize.js')}}"></script>
+<script type="text/javascript" language="javascript">
+Materialize.toast('{{status}}', 7000)
+  $(document).ready(function(){
+    $('ul.tabs').tabs();
+  });
+    $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+</script>
+{% endblock %}

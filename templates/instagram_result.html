@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Instagram - Result{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col l6">
+      <h2>Result</h2>
+      <h4>{{user}}</h4>
+      <h5>Found: {{total}} </h5>
+      <br>
+      <a class="waves-effect waves-light btn" href = '/instagram'>Go back</a>
+    </div>
+    <div class="col l6">
+      <br><br><br><br><br>
+      <i class="large material-icons">{{logo}}</i></h5>
+    </div>
+    <br>
+  </div>
+  <hr>
+  <br>
+  {% for r in results %}
+  <div class="row">
+    <div class="col l6" align="left">
+      <img src = "{{r}}" height="30%" width="30%" style="border-radius: 50%;">
+    </div>
+    <div class="col l6" align="right">
+      <a download="{{r}}" href = "{{r}}" title = "Image"><button class='btn btn-default'>Download!</button>
+      </a>
+   </div>
+   <br>
+   <br>
+   <br>
+  </div>
+    {% endfor %}
+</div>
+{% endblock %}

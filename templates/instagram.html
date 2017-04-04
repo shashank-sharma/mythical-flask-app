@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Instagram - Download it{% endblock %}
+{% block content %}
+  <div class="progress" style="display: none;" id = "loader">
+      <div class="indeterminate"></div>
+  </div>
+  <div class="container">
+<h1>Instagram Images Fetcher</h1>
+  <div class="row">
+    <form class="col s12" role="form" method='POST' action='/instagram_result' autocomplete="off">
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="icon_prefix" type="text" class="validate" name = "username" data-length="10">
+          <label for="icon_prefix">Username</label>
+        </div>
+        </div>
+            <p>
+      <i class="material-icons prefix">high_quality</i>
+      <input name="quality" value = "HQ" type="radio" id="test1" />
+      <label for="test1">High Quality</label>
+    </p>
+    <p>
+      <i class="material-icons prefix">web</i>
+      <input name="quality" value = "LQ" type="radio" id="test2" />
+      <label for="test2">Low Quality</label>
+    </p>
+    <br>
+        Note: Restricted to open accounts only (Close account will come soon)
+        <br>
+         <button type="submit" class="btn btn-default" id="add_a">Submit</button>
+    </form>
+  </div>
+  </div>
+{% endblock %}  
+{% block js_footer %}
+<script type="text/javascript" src="{{url_for('static', filename='javascript/jquery-2.1.1.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='javascript/materialize.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='javascript/materialize.js')}}"></script>
+<script type="text/javascript" language="javascript">
+$('#add_a').click(function() {
+    $('#loader').toggle();
+});
+</script>
+{% endblock %}

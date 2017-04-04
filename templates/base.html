@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" style="font-family: Ubuntu;">
+  <head>
+  {% block head %}
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta charset="utf-8">
+
+    <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">-->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='ico/favicon.ico') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static',filename='styles/materialize.css') }}"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static',filename='styles/icon.css') }}"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static',filename='styles/ss.css') }}"  media="screen,projection"/>
+  {% endblock %}
+  </head>
+  <body bgcolor="#e3f2fd">
+  <!-- nav bar started -->
+    {% block navbar %}
+    <nav class="pushpin-demo-nav pinned" data-target="blue" style="top: 0px;">
+      <div class="nav-wrapper blue-grey darken-4">
+        <ul>
+          <li><a href="#" data-activates="slide-out" class="button-collaps"><i class="material-icons">dashboard</i></a></li>
+            <ul id="nav-mobile" class="hide-on-med-and-down">
+              <li><a href = "/">Home</a></li>
+            </ul>
+            {% if session['logged_in'] %}
+            <li class="right"><a href = "" data-activates='dropdown0' class='dropdown-button'><i class="large material-icons">perm_identity</i></a></li>
+              <ul id='dropdown0' class='dropdown-content blue-grey darken-4'>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/settings">Settings</a></li>
+                <li class="divider"></li>
+                <li><a href="/logout">Log out</a></li>
+              </ul>
+                
+            {% else %}
+            <li class="right"><a href = "/login">Login</a></li>
+            <li class="right"><a href = "/signup">Register</a></li>
+            {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <!-- Nav bar ended -->
+    <!-- For Slide out which is hidden but gets activated when clicked -->
+    <ul id="slide-out" class="side-nav">
+      <li>
+        <a href = "/">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Home</button>
+        </a> 
+      </li>
+      <li>
+        <a href = "/login">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Login</button>
+        </a>
+      </li>
+    </ul>
+    <!-- For slide out over -->
+    {% endblock %}
+    <div class="content">
+      <br>
+      <br>
+      <br>
+      {% block content %}
+      {% endblock %}
+      <hr>
+    </div>
+  
+    <div class="fixed-action-btn">
+      <a class="btn-floating btn-large teal">
+        <i class="large material-icons">mode_edit</i>
+      </a>
+      <ul>
+        <li><a class="btn-floating red" href="/youtube"><i class="material-icons">videocam</i></a></li>
+        <li><a class="btn-floating yellow darken-1" href="/instagram"><i class="material-icons">picture_in_picture</i></a></li>
+        <li><a class="btn-floating green" href="/todo"><i class="material-icons">toc</i></a></li>
+        <li><a class="btn-floating blue" href="/"><i class="material-icons">business</i></a></li>
+      </ul>
+    </div>
+    <!-- Footer Started -->
+    {% block footer %}
+    <footer class="page-footer blue-grey darken-4" style="bottom: 0;">
+      <div class="row">
+        <div class="col l6">
+          <h5 class="white-text">&copy; Mythical</h5>
+          <p class="grey-text text-lighten-4">Python based program on Heroku + Flask</p>
+          <p><a href = "https://shashank-sharma.github.io">My blog</a></p>
+          <p style="color: white"><b>Page views: {{views}}</b></p>
+        </div>
+        <div class="col l3">
+        </div>
+        <div class="col l3" align="left" style="padding-right: 80px;">
+          <a href="http://stackexchange.com/users/4312856/shashank"><img src="http://stackexchange.com/users/flair/4312856.png" width="208" height="58" alt="profile for Shashank on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for Shashank on Stack Exchange, a network of free, community-driven Q&amp;A sites"></a>
+          <br>
+          <iframe allowtransparency="true" scrolling="no" frameborder="0" src="https://buttons.github.io/buttons.html#href=https%3A%2F%2Fgithub.com%2Fshashank-sharma&amp;text=Follow%20%40shashank-sharma&amp;data-count-api=%2Fusers%2Fshashank-sharma%23followers&amp;data-count-href=%2Fshashank-sharma%2Ffollowers&amp;data-count-aria-label=%23%20followers%20on%20GitHub&amp;data-style=mega&amp;data-icon=&amp;aria-label=Follow%20%40shashank-sharma%20on%20GitHub" style="width: 226px; height: 28px; border: none;"></iframe>
+          <br>
+          <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-follow-button twitter-follow-button-rendered" title="Twitter Follow Button" src="https://platform.twitter.com/widgets/follow_button.89bd237a86eeb0e8b1de842a4b88b09b.en.html#dnt=false&amp;id=twitter-widget-0&amp;lang=en&amp;screen_name=shashanksharma9&amp;show_count=true&amp;show_screen_name=true&amp;size=l&amp;time=1491113329222" style="position: static; visibility: visible; width: 283px; height: 28px;" data-screen-name="shashanksharma9"></iframe>
+          <br>
+          <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+          <!-- Place this tag where you want the widget to render. -->
+          <div class="g-follow" data-annotation="bubble" data-height="24" data-href="//plus.google.com/u/0/106849872049927606828" data-rel="author"></div>    
+          <br>
+          <iframe src="https://www.facebook.com/plugins/follow.php?href=https%3A%2F%2Fwww.facebook.com%2Fshashank.sharma.902&width=80&height=21&layout=button_count&size=small&show_faces=true&appId=350753105318715" width="80" height="21" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+          <!-- Place this tag in your head or just before your close body tag. -->
+        </div>
+      </div>
+      <div style="color: white;">
+        <center>Made with <img src="{{url_for('static', filename='heart.png')}}" style="height: 15px; width: 15px;"> by Shashank Sharma</center>
+      </div>
+    </footer>
+    {% endblock %}
+    <!-- Footer ended -->
+  </div>
+  {% block js_footer %}
+  {% endblock %}
+  <script type="text/javascript" src="{{url_for('static', filename='javascript/jquery-2.1.1.min.js')}}"></script>
+  <script type="text/javascript" src="{{url_for('static', filename='javascript/materialize.min.js')}}"></script>
+  <script type="text/javascript" src="{{url_for('static', filename='javascript/materialize.js')}}"></script>
+  <script type="text/javascript" language="javascript">
+
+    $(document).ready(function(){
+      $('.button-collaps').sideNav({
+        menuWidth: 340, // Default is 240
+        edge: 'left', // Choose the horizontal origin
+        closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+        draggable: true // Choose whether you can drag to open on touch screens
+        }
+      );
+
+      $('.dropdown-button').dropdown({
+        inDuration: 300,
+        outDuration: 225,
+        constrainWidth: false, // Does not change width of dropdown to that of the activator
+        hover: true, // Activate on hover
+        gutter: 0, // Spacing from edge
+        belowOrigin: false, // Displays dropdown below the button
+        alignment: 'left', // Displays dropdown with edge aligned to the left of button
+        stopPropagation: false // Stops event propagation
+      }
+    );
+
+    $(".button-collaps").sideNav();
+    });
+  </script>
+  </body>
+</html>

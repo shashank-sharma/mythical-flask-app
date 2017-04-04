@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Youtube - Result{% endblock %}
+{% block content %}
+<div class="container">
+<form class="col s12" role="form" method='POST' action='/youtube-result' autocomplete="off">
+  <div class="row">
+    <ol id="a">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">videocam</i>
+        <input class="validate" type="text" name="url" size="40" value="" />
+        <label for="textarea1">Enter your URL</label>
+      </div>
+    </ol>
+  </div>
+  <button class="btn waves-effect waves-light" type="submit" name="action">Submit<i class="material-icons right">send</i></button>
+</form>
+</div>
+
+<hr>
+
+    <div class="row">
+    <div class="col s12">
+    <div class="parallax-container images-text" id="events">
+        <div class="parallax"><img src={{urlImage}}></div>
+        <h4 class="hh2" style="padding: 40px"><span>{{urlTitle}}<br><br><br>Duration: {{urlDuration}}</span></h4>
+        <div class="hh2" align="right">
+        <a href = {{url}} download>
+        <button class="btn waves-effect waves-light btn-large" type="submit" name="action">Quick Download<i class="material-icons right">play_for_work</i></button></a></div>
+        
+</div>
+    </div>
+    </div>
+    <div class="row container">
+{% for r in urlData %}
+<p style="color: blue;">Format: {{r[1]}} || 
+Extension: {{r[2]}} || ({{r[3]}}) ||
+<a href="{{r[0]}}" download>
+<u>Download</u>
+</a>
+</p>
+{% endfor %}
+    </div>
+
+
+
+{% endblock %}
+{% block js_footer %}
+<script type="text/javascript" src="{{url_for('static', filename='javascript/jquery-2.1.1.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='javascript/materialize.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='javascript/materialize.js')}}"></script>
+<script type="text/javascript" language="javascript">
+  $("#add_a").click(function(){
+    Materialize.toast('Wait for 5 seconds', 4000)
+  });
+  $(document).on("keyup", "#a input", function() {
+    var emptyInputs = $("#a").find("input").filter(function() {
+      return $.trim( $(this).val() ) == ""
+    }).length;
+    $("#add_a").prop("disabled", emptyInputs);
+  });
+    $(document).ready(function(){
+      $('.parallax').parallax();
+  });
+</script>
+{% endblock %}

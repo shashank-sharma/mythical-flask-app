@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Sign up{% endblock %}
+{% block content %}
+  <div class="row container">
+<h1>Sign up Form</h1>
+  <div style="display: {{error}}">
+  <br>
+  <i class="material-icons prefix">error</i>
+  There is error with your {{message}}
+  <br>
+  </div>
+    <form class="col s12" role="form" method='POST' action='/signup' autocomplete="off">
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="icon_prefix" type="text" class="validate" name = "name">
+          <label for="icon_prefix">Username</label>
+        </div>
+        </div>
+        <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">mail</i>
+          <input id="email" type="email" class="validate" name = "mail" data-length="80">
+          <label for="email" data-error="wrong" data-success="right">Email</label>
+        </div>
+      </div>
+      <div class="row">
+              <div class="input-field col s6">
+              <i class="material-icons prefix">perm_identity</i>
+          <input id="password" type="password" class="validate" name = "password" data-length="32">
+          <label for="password">Password</label>
+        </div> 
+        </div>
+        Note: Make sure your password is 6 characters long.
+        <br>
+         <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </div>
+{% endblock %}
+{% block js_footer %}
+<script type="text/javascript" src="{{url_for('static', filename='javascript/jquery-2.1.1.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='javascript/materialize.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='javascript/materialize.js')}}"></script>
+<script type="text/javascript" language="javascript">
+  $(document).ready(function() {
+    $('input#email, textarea#textarea1, input#password').characterCounter();
+  });
+</script>
+{% endblock %}

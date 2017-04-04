@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Youtube{% endblock %}
+{% block content %}
+  <div class="progress" style="display: none;" id = "loader">
+      <div class="indeterminate"></div>
+  </div>
+  <div class="container">
+<form class="col s12" role="form" method='POST' action='/youtube-result' autocomplete="off">
+  <div class="row">
+    <ol id="a">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">videocam</i>
+        <input class="validate" type="text" name="url" size="40" value="" />
+        <label for="textarea1">Enter your URL</label>
+      </div>
+    </ol>
+  </div>
+  <button class="btn waves-effect waves-light" type="submit" name="action" id="add_a">Submit<i class="material-icons right">send</i></button>
+</form>
+</div>
+
+{% endblock %}
+{% block js_footer %}
+<script type="text/javascript" src="{{url_for('static', filename='javascript/jquery-2.1.1.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='javascript/materialize.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='javascript/materialize.js')}}"></script>
+<script type="text/javascript" language="javascript">
+$('#add_a').click(function() {
+    $('#loader').toggle();
+});
+  $("#add_a").click(function(){
+    Materialize.toast('Wait for 5 seconds', 4000)
+  });
+  $(document).on("keyup", "#a input", function() {
+    var emptyInputs = $("#a").find("input").filter(function() {
+      return $.trim( $(this).val() ) == ""
+    }).length;
+    $("#add_a").prop("disabled", emptyInputs);
+  });
+</script>
+{% endblock %}

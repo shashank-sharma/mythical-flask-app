@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}To-do List{% endblock %}
+{% block content %}
+<div class="container">
+   <h4>Create Task</h4>
+    <form role="form" method='POST' action='/todo' autocomplete="off">
+        <div class="form-group">
+          <input type="text" name="name" class="form-control" id="name" placeholder="Name/Heading" style="max-width: 300px;">
+          <br>
+    <input type="text" name="description" class="form-control" id="description" placeholder="Description" style="max-width: 600px;">
+        </div>
+
+    <p>
+      <i class="material-icons prefix">invert_colors</i>
+      <input name="quality" value = "red" type="radio" id="test1" />
+      <label for="test1">Red</label>
+    </p>
+        <p>
+      <i class="material-icons prefix">invert_colors</i>
+      <input name="quality" value = "teal" type="radio" id="test2" />
+      <label for="test2">Blue</label>
+    </p>
+        <p>
+      <i class="material-icons prefix">invert_colors</i>
+      <input name="quality" value = "green" type="radio" id="test3" />
+      <label for="test3">Green</label>
+    </p>
+        <p>
+      <i class="material-icons prefix">invert_colors</i>
+      <input name="quality" value = "black" type="radio" id="test4" />
+      <label for="test4">Black</label>
+    </p>
+
+
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+
+
+<!-- To do list -->
+      <h2>To-Do List</h2>
+</div>
+      <div class="row">
+        {% for r in results %}
+        <div class="col s4">
+          <div class="card {{r[2]}}">
+            <div class="card-content white-text" style="overflow: hidden;">
+            <center>
+        <a class="waves-effect waves-light btn-large" href="#modal{{r[4]}}" style="word-wrap: break-word">
+        <i class="large material-icons">zoom_in</i>
+        </a>
+        <br>
+              <span class="card-title" style="line-height: 1.5em;height: 1em;overflow: hidden;text-align: left;">{{r[0]}}</span>
+              <p style="line-height: 1.5em;height: 3em;overflow: hidden;">{{r[1]}}</p>
+        </center>
+            </div>
+          </div>
+        </div>
+        <div id="modal{{r[4]}}" class="modal {{r[2]}}">
+    <div class="modal-content">
+      <h4 style="color: white;word-wrap: break-word;">{{r[0]}}</h4>
+      <p style="color:white;word-wrap: break-word;">{{r[1]}}</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Back</a>
+    </div>
+  </div>
+          {% endfor %}
+      </div>
+<!--          <ul class="collapsible popout" data-collapsible="accordion">
+          {% for r in results %}
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{r[0]}}</div>
+      <div class="collapsible-body" style="background-color: white; padding: 20px;"><span>{{r[1]}}</span></div>
+    </li>
+    {% endfor %}
+  </ul>-->
+{% endblock %}
+
+{% block js_footer %}
+<script type="text/javascript" src="{{url_for('static', filename='javascript/jquery-2.1.1.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='javascript/materialize.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='javascript/materialize.js')}}"></script>
+<script type="text/javascript" language="javascript">
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+  $('select').material_select('destroy');
+  $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+</script>
+{% endblock %}

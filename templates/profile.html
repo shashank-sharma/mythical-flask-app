@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Profile - {{username}}{% endblock %}
+{% block content %}
+<div class="container">
+
+<h4>Welcome {{user}}</h4>
+<br><br>
+<h5><b>Username:</b> {{username}}</h5>
+<h5><b>Email id:</b> {{email}}</h5>
+<br>
+<br>
+<hr width="50%">
+<h4>Your notes: {{count}}</h4>
+<br>
+<br>
+      <div class="row">
+        {% for r in results %}
+        <div class="col s4">
+          <div class="card {{r[2]}}">
+            <div class="card-content white-text" style="overflow: hidden;">
+            <form class="col s12" role="form" method='POST' action='/profile' autocomplete="off">
+            <a href="" data-activates='dropdown{{r[3]}}' class='dropdown-button right' style="color: white;">
+            <i class="material-icons right">mode_edit</i></a>
+                  <ul id='dropdown{{r[3]}}' class='dropdown-content'>
+                  <li><button class="btn-flat" type="submit" name="delete" value='{{r[1]}}'>Delete
+                  </li></button>
+                  </form>
+                    </ul>
+        <a class="" href="#modal{{r[3]}}" style="word-wrap: break-word">
+        <i class="material-icons left" style="color: white;">zoom_in</i>
+        </a>
+            <center>
+        <br>
+              <span class="card-title" style="line-height: 1.5em;height: 1em;overflow: hidden;text-align: left;">{{r[0]}}</span>
+              <p style="line-height: 1.5em;height: 3em;overflow: hidden;">{{r[1]}}</p>
+        </center>
+            </div>
+          </div>
+        </div>
+        <div id="modal{{r[3]}}" class="modal {{r[2]}}">
+    <div class="modal-content">
+      <h4 style="color: white;word-wrap: break-word;">{{r[0]}}</h4>
+      <p style="color:white;word-wrap: break-word;">{{r[1]}}</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Back</a>
+    </div>
+  </div>
+          {% endfor %}
+</div>
+{% endblock %}
+{% block js_footer %}
+<script type="text/javascript" src="{{url_for('static', filename='javascript/jquery-2.1.1.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='javascript/materialize.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='javascript/materialize.js')}}"></script>
+<script type="text/javascript" language="javascript">
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+	Materialize.toast('Check', 6000)
+  $('select').material_select('destroy');
+  $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+              $('.dropdown-button').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrainWidth: false, // Does not change width of dropdown to that of the activator
+      hover: true, // Activate on hover
+      gutter: 0, // Spacing from edge
+      belowOrigin: false, // Displays dropdown below the button
+      alignment: 'left', // Displays dropdown with edge aligned to the left of button
+      stopPropagation: false // Stops event propagation
+    }
+  );
+</script>
+{% endblock %}
