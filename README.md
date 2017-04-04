@@ -4,7 +4,7 @@ Flask app created with the help of Python and Heroku
 
 Python 2.7
 
-Live: [mythical.herokuapp.com](https://mythical.herokuapp.com)
+Live: [mythical.herokuapp.com](http://mythical.herokuapp.com)
 
 ### Features
 
