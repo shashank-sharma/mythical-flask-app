@@ -12,7 +12,7 @@ Live: [mythical.herokuapp.com](http://mythical.herokuapp.com)
 2. After log in one can create task based on their priorities and then delete it from their profile
 3. Can download instagram images just by giving username (only applicable if their username is public)
 4. Download any youtube video just by giving URL of that video. (HD or audio format)
-5. Suggestions feature is also there. If interested then do comment over there ^_^
+5. Suggestions feature is also there. If interested then do comment over there (disabled)
 
 ### Requirements
 
